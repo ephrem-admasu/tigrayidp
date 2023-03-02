@@ -1,0 +1,56 @@
+{% extends "idp/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+  <h1 class="h2">List of Aid Packages</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <button href="{% url 'aid:create_package' %}" class="btn btn-sm btn-outline-secondary">
+      Add New Aid Package
+    </button>
+  </div>
+</div>
+{% if packages %} 
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Target group</th>
+        <th>Items</th>
+        <th>Distribution Date</th>
+        <th>Quota</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for c in packages %}
+      <tr>
+          <td>{{forloop.counter}}</td>
+          <td>
+            <a href="{% url 'aid:aidpackage_detail' c.id %}">
+              {{c.package_name}}
+            </a>
+          </td>
+          <td>{{c.target_group}}</td>
+          <td>{{c.aid_items}}</td>
+          <td>{{c.distribution_date}}</td>
+          <td>{{c.quota}}</td>
+          <td>
+            {%if c.status %} 
+              <a href="#" class="btn btn-success btn-sm disabled" aria-disabled="true">FINALIZED</a>
+            {% else %}
+              <a href="#" class="btn btn-warning btn-sm disabled">PENDING</a>
+            {% endif %}
+          </td> 
+      </tr>
+  {% endfor %}
+    </tbody>
+  </table>
+  {% else %} 
+    <p>No aid packages recorded so far. Click <a href="{% url 'aid:create_package' %}">here</a> to create a new one.</p>
+  </div>
+  {% endif %}
+{% endblock %}

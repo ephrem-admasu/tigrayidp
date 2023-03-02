@@ -1,0 +1,143 @@
+{% extends "idp/base.html" %}
+{% load idp_extras %}
+{% load static %}
+{% block title %} 
+Dashboard
+{% endblock %}
+
+    {% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+    <form action="{% url 'idp:search' %}" method="GET">
+      {% csrf_token %}
+      <input 
+              type="text" 
+              name="search_term" 
+              placeholder="Search" 
+              aria-label="Search">
+              
+      <button class="btn btn-sm btn-outline-secondary" type="submit">Go</button>
+  </form>
+  </div>
+
+
+          
+
+
+  {% if idps %} 
+  <div class="row">
+    <div class="col-sm-3"><h2>IDP List</h2></div>
+    <div class="col-sm-6"></div>
+    <div class="col-sm-3">
+      <a class="btn btn-outline-secondary" href="{% url 'idp:heads_excel' %}">Download Excel</a>
+    </div>
+  </div>
+  <div class="table-responsive" style="font-size: .8em;">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th>S.No.</th>
+          <th>HoH Full Name</th>
+          <th>Age</th>
+          <th>Sex</th>
+          <th>HH Size</th>
+          <th>List of Members</th>
+          <th>Sex of Members</th>
+          <th>Disabled?</th>
+          <th>PSNP Beneficiary?</th>
+          <th>Emergency relief host</th>
+          <th>Pregnant or lactating</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for idp in idps %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>
+               <a href="{{ idp.get_absolute_url }}">{{idp.full_name}}</a> 
+            </td>
+            <td>{{idp.age}}</td>
+            <td>{{idp.sex}}</td>
+            <td>
+              <table>
+                <tr>
+                  <th>M</th>
+                  <th>F</th>
+                  <th>Total</th>
+                </tr>
+                <tr>
+                  <td>{{idp.male_hhs}}</td>
+                  <td>{{idp.female_hhs}}</td>
+                  <td>{{idp.total_hhs}}</td>
+                </tr>
+              </table>
+            </td>
+            <td>
+             {% if idp.members %} 
+              <table>
+                <tr><td>Full Name</td></tr>
+                {% for mem in idp.members.all %} 
+                <tr>
+                  <td>
+                      {{mem}}
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            {% endif %} 
+            </td>
+            <td>
+              {% if idp.members %} 
+              <table>
+                <tr><td>Sex</td></tr>
+                {% for mem in idp.members.all %} 
+                <tr>
+                  <td>
+                      {{mem.sex}}
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            {% endif %} 
+            </td>
+            <td>
+              <table>
+                <tr><td>{{idp.is_disabled|yesno}}</td></tr>
+                {% if idp.members %}
+                {% for mem in idp.members.all %}
+                  <tr><td>{{mem.is_disabled|yesno}}</td></tr>
+                {% endfor %}
+                {% endif %}
+              </table>
+            </td>
+            <td>{{ idp.psnp_beneficiary|yesno }}</td>
+            <td>{{idp.emergency_relief_host|yesno}}</td>
+            <td>{{idp.plw|yesno}}</td>
+        </tr>
+    {% endfor %}
+      </tbody>
+    </table>
+    {% include "idp/pagination.html" with page=idps %}
+  </div>
+  {% else %} 
+    <div class="alert alert-warning">
+      <p>No IDPs in your dashboard. You can start adding a new IDP by clicking <a href="{% url 'idp:add_head' %}">here</a></p>
+    </div>
+  {% endif %}
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

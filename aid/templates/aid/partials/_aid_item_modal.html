@@ -1,0 +1,75 @@
+<div class="modal fade" id="aiditemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Add Aid Item</h4>
+        </div>
+        <div class="modal-body">
+            <h3 class="text-center">Add New Aid Item</h3>
+            <form method="POST" action="{% url 'aid:add_aiditem' aidpackage_detail.id %}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                            <label for="aiditemname">Aid name</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="id_name" 
+                                name="name" 
+                                placeholder="Item Name">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="category">Category</label>
+                        <select id="id_category" class="custom-select d-block w-100" name="category">
+                            <option selected>----------</option>                
+                            <option value="Food Items">Food Items</option>
+                            <option value="NFI">NFI</option>
+                            <option value="Nutrients">Nutrients</option>
+                            <option value="Hygiene">Hygiene</option>
+                            <option value="Shelter">Shelter</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="metric">Metric</label>
+                        <select id="id_metric" class="custom-select d-block w-100" name="metric">
+                            <option selected>----------</option>                
+                            <option value="Kg.">Kg.</option>
+                            <option value="Ltr.">Ltr.</option>
+                            <option value="Qty.">Qty.</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-2">
+                            <label for="amount">Amount</label>
+                            <input type="number" class="form-control" id="id_amount" name = 'amount' placeholder="Amount">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="allocscheme">Allocation Scheme</label>
+                        <select id="id_allocation_scheme" class="custom-select d-block w-100" name="allocation_scheme">
+                            <option selected>----------</option>       
+                            <option value="per person">per person</option>         
+                            <option value="per family">per family</option>
+                            <option value="per child">per child</option>
+                            <option value="per lactating">per lactating</option>
+                            <option value="per pregnant">per pregnant</option>
+                            <option value="per disabled">per disabled</option>
+                            <option value="per elderly">per elderly</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <input type="hidden" class="form-control" id="id_aid_package" name = 'aid_package' 
+                        value="{{ aiditem_form.aid_package.value|default:'' }}">
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                    <button type="submit" class="btn btn-primary">Add Item</button>
+                  </div>
+            </form>
+        </div>
+    </div>
+  </div>

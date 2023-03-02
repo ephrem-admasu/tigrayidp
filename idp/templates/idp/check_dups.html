@@ -1,0 +1,40 @@
+{% extends "idp/base.html" %}
+{% load static %}
+{% block content %} 
+
+{% if dups|length > 0 %}
+
+<div class="row">
+  <div class="col-sm-4"><h4 class="text-center"><span class="label label-danger">{{total_dups}}</span> identified duplicates</h4></div>
+  <div class="col-sm-5"></div>
+  <div class="col-sm-3">
+    <a class="btn btn-outline-secondary" href="{% url 'idp:duplicates' %}">Download Excel</a>
+  </div>
+</div>
+{% for d in dups %}
+<div class="card" style="width: 65rem; font-size: .9em;">
+    <div class="card-header">
+      Duplicate #{{forloop.counter}}
+    </div>
+    <ul class="list-group list-group-flush">
+      {% for idp in d %}
+      <li class="list-group-item">
+        <div class="row">
+            <div class="col-sm-3"><a href="{{ idp.get_absolute_url }}">{{idp}}</a></div>
+            <div class="col-sm-2">ID No. {{idp.id_no}}</div>
+            <div class="col-sm-3">Prev. Wereda/Kebele: {{idp.ozone}}/{{idp.owereda}}</div>
+            <div class="col-sm-2">Wereda: {{idp.cwereda}}</div>
+            <div class="col-sm-2">Phone No. {{idp.phone_no}}</div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endfor %}
+
+{% else %} 
+  <div class="alert alert-success">
+    Fortunately, you have no duplicates in your database.
+  </div>
+{% endif %}
+{% endblock %}

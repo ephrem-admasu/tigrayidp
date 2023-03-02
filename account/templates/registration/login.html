@@ -1,0 +1,55 @@
+{% load static %}<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+      Login
+    </title>
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+  </head>
+
+<style>
+  body{
+    background: rgb(203, 204, 204);
+  }
+  .loginpage{
+    background-color: beige;
+    border: 2px solid rgb(243, 240, 240);
+    margin: 5% 25%;
+    padding: 15px;
+    width: 50%;
+  }
+  
+</style>
+
+  <body class="text-center">
+
+    <div class="loginpage">
+      <h1>Login</h1>
+      {% if form.errors %}
+        <p>
+          Your username and password didn't match. Please try again.
+        </p>
+      {% else %}
+        <p>Please, use the following form to log-in:</p>
+      {% endif %}
+      <form action="." method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+          {{field.errors}}
+          {{field.label_tag}} {{field}}
+          <br>
+        {% endfor %}
+
+          <button type="submit" class="btn btn-primary btn-block col-sm-3">
+              Login
+          </button>
+      </form>
+    </div>
+      
+  </body>
+</html>

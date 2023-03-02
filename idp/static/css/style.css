@@ -1,0 +1,95 @@
+/* body{
+	padding-top: 90px;
+} */
+
+/* Main Navbar */
+
+/* .navbar{
+	min-height: 70px;
+} */
+
+/* Navbar All */
+
+.navbar-inverse {
+    background-color: #00a86b;
+    border-color: #00a862;
+}
+
+/* Active Link */
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, 
+.navbar-inverse .navbar-nav > .active > a:hover {
+	background-color: #444C38;
+}
+
+/* Navbar Link */
+
+.navbar-inverse .navbar-nav > li > a{
+	color: black;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	font-size: 16px;
+}
+
+/* Brand Name */
+
+.navbar-inverse .navbar-brand{
+	color: #bbb;
+	font-size: 30px;
+	line-height: 40px;
+}
+
+.dropdown-menu{
+	background-color: #50C878;
+	border-top: 3px solid black;
+	min-width: 200px;
+}
+
+.navbar-right .dropdown-menu{
+	right: 0;
+	left: auto;
+}
+.dropdown-menu > li > a{
+	color: #fff;
+	padding: 6px 20px;
+	-webkit-transition: padding 0.5s ease;
+	-moz-transition: padding 0.5s ease;
+	-o-transition: padding 0.5s ease;
+	transition: padding 0.5s ease;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus{
+	background-color: #444C38;
+	color: #fff;
+	padding-left: 25px;
+}
+
+.dropdown-menu .divider{
+	background-color: #004953
+;
+}
+
+
+.navbar-toggle{
+	margin-top: 18px;
+}
+
+.idp{
+	background-color: #f9f900;
+	color: #e41b17;
+	font-weight: bold;
+	border: 1px solid #f9f900;
+	border-radius: 36px;
+	padding: 2px;
+}
+
+.Tigray{
+	color: #f9f900;
+	font-weight: bold;
+}
+
+.form-control{
+	margin-bottom: 10px;
+}
+

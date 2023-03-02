@@ -1,0 +1,53 @@
+<style>
+    .table{
+        font-size: 10px;
+    }
+    .headform{
+        font-size: 12px;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-4 headform">
+        <form action="{% url 'idp:add_head' %}">
+            <button class="btn btn-primary btn-sm">
+                Add New Family Head
+            </button>
+        </form>
+    </div>
+    <div class="col-sm-7">
+        <table class="table table-striped table-responsive">
+            <caption>List of IDPs</caption>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Full Name</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Marital Status</th>
+                    <th>Family Size</th>
+                    <th>Subcity</th>
+                    <th>Ketena</th>
+                    <th>Prev. Address</th>
+                </tr>
+            </thead>
+            {% for idp in idps %}
+            <tbody>
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>
+                       <a href="{{ idp.get_absolute_url }}">{{idp}}</a> 
+                    </td>
+                    <td>{{idp.age}}</td>
+                    <td>{{idp.sex}}</td>
+                    <td>{{idp.marital_status}}</td>
+                    <td>{{idp.family_size}}</td>
+                    <td>{{ idp.address.subcity }}</td>
+                    <td>{{ idp.address.ketena }}</td>
+                    <td>{{ idp.prev_address.zone }} - {{ idp.prev_address.ketena }}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+

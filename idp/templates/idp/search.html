@@ -1,0 +1,43 @@
+{% extends "idp/base.html" %} 
+{% load static %} 
+
+{% block title %} 
+    Search results 
+{% endblock %}
+
+
+{% block content %} 
+
+    <h3 class="border-bottom">Search results for "{{search_term}}"</h3>
+
+    {% for idp in results %} 
+
+    <div class="media myrow">
+        <a class="pull-left" href="#">
+            <img src="{% if idp.profilepic %}{{ idp.profilepic.url}}{% else %}{% static 'img/no_image.png' %}{% endif %}" 
+            width="100" height = "200" class="img-responsive img-fluid img-thumbnail">
+        </a>
+        <div class="media-body">
+            <h3 class="media-heading idptitle">{{idp}}</h3>
+            <div class="row">
+                <div class="col-sm-2">
+                    <p>Age: {{idp.age}}</p>
+                </div>
+                <div class="col-sm-2">
+                    <p>Sex: {{idp.sex}}</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>Marital status: {{idp.marital_status}}</p>
+                </div>
+                <div class="col-sm-2">
+                    <p>Family size: {{idp.family_size}}</p>
+                </div>
+            </div>
+            <a href="{% url 'idp:detail' idp.id %}" class="btn btn-sm">See More</a>
+        </div>
+    </div>
+    {% empty %}
+        <h3>No results found.</h3>
+    {% endfor %}
+
+{% endblock %}

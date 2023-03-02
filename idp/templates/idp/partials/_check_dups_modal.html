@@ -1,0 +1,18 @@
+<div class="modal fade" id="checkDups" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Warning on Checking Duplicates</h4>
+        </div>
+        <div class="modal-body">
+            <p>Checking for duplicates requires iterating all rows in your database. This will take a few minutes. Please click OK if you want to continue.</p>
+            <div class="modal-footer">
+                <button href="{% url 'idp:check_dups' %}" class="btn btn-primary" target="_blank">OK</button>
+            </div>
+      </div>
+    </div>
+  </div>
+  </div>

@@ -1,0 +1,38 @@
+<style>
+    .table{
+        font-size: 12px;
+    }
+    .headform{
+        font-size: 12px;
+    }
+</style>
+<div class="row">
+        <table class="table table-striped table-responsive">
+            <caption>Newly Selected Aid Recievers</caption>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Family Head</th>
+                    <th>Family Size</th>
+                    <th>Ketena</th>
+                </tr>
+            </thead>
+            {% for qt in quotas %}
+            <tbody>
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>
+                        {{qt.family_size}}
+                    </td>
+                    <td>{{qt.family_size}}</td>
+                    <td>{{qt.address.ketena}}</td>
+                    <!-- <td>{{qt.marital_status}}</td>
+                    <td>{{qt.family_size}}</td>
+                    <td>{{qt.created_by.first_name}} {{qt.created_by.last_name}}</td> -->
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+

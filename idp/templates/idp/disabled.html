@@ -1,0 +1,64 @@
+{% extends "idp/base.html" %}
+{% load static %}
+{% load idp_extras %}
+
+{% block title %} 
+List of Diabled 
+{% endblock %}
+{% block content %}
+
+<h3>List of Disabled People</h3>
+{% if disabled_mem %} 
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Full Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+       <th>Family Head</th>
+       <th>Wereda</th>
+       <th>Kebelle</th>
+       <th>IDP Site</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for c in disabled_mem %}
+      <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{c}}</td>
+          <td>{{c.sex}}</td>
+          <td>{{c.age}}</td>
+          <td><a href="{{ c.family_head.get_absolute_url }}">{{c.family_head}}</a></td>
+          <td>{{c.family_head.cwereda}}</td>
+          <td>{{c.family_head.ckebele}}</td>
+          <td>{{c.family_head.idp_site}}</td>
+      </tr>
+  {% endfor %}
+  {% for c in disabled_head %}
+      <tr>
+          <td>{{forloop.counter|add:count}}</td>
+          <td>{{c}}</td>
+          <td>{{c.sex}}</td>
+          <td>{{c.age}}</td>
+          <td>
+            <a href="{{ c.get_absolute_url }}">
+              {{c|getsex}}
+            </a>
+          </td>
+          <td>{{c.cwereda}}</td>
+          <td>{{c.ckebele}}</td>
+          <td>{{c.idp_site}}</td>
+      </tr>
+  {% endfor %}
+    </tbody>
+  </table>
+  </div>
+{% else %} 
+  <div class="alert alert-warning">
+    No disabled people found in your system.
+  </div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,44 @@
+<div id="accordion" role="tablist">
+    {% for member in members %}
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading{{forloop.counter}}">
+        <p class="mb-0">
+          <a data-toggle="collapse" href="#collapse{{forloop.counter}}" aria-expanded="true" aria-controls="collapse{{forloop.counter}}">
+            {{member}}
+          </a>
+        </p>
+      </div>
+
+      <div id="collapse{{forloop.counter}}" class="collapse" data-parent="#accordion" role="tabpanel" aria-labelledby="heading{{forloop.counter}}">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2">
+                    <a href="#">
+                        <img src="{% if member.profilepic %}{{ member.profilepic.url}}{% else %}{% static 'img/no_image.png' %}{% endif %}" 
+                                    class="img-fluid img-thumbnail">
+                    </a>
+                </div>
+                <div class="col-sm-5">
+                        <div class="col-sm-3">
+                            <p>Age: {{member.age}}</p>
+                        </div>
+                        <div class="col-sm-5">
+                            <p>Marital status: {{member.marital_status}}</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>Relation: {{member.relation}}</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10"><p>Current Address: {{member.address}}</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10"><p>Previous Address: {{member.prev_address}}</p></div>
+                        </div>
+                    </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+   {% endfor %}
+  </div>

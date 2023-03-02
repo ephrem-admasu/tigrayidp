@@ -1,0 +1,30 @@
+{% load static %}<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+      Tigry IDP 
+    </title>
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  </head>
+
+  <body>
+
+<div class="jumbotron">
+    <div class="container-fluid">
+      <h1 class="display-3">Welocome!</h1>
+      <p>
+        In Tigray millions are forced to flee their homes while remaining within the region's borders. 
+        This is a database system that assists in maintaining an impartial and efficient aid distribution among these 
+        refugees.
+      </p>
+      {% if user.is_authenticated %} 
+      <p><a class="btn btn-primary btn-lg" href="{% url 'idp:dashboard' %}" role="button">Visit Dashboard</a></p>
+      {% else %} 
+      <p><a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a></p>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>

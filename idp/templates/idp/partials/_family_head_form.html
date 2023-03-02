@@ -1,0 +1,453 @@
+
+
+<h3 class="text-center">Add New Family Head</h3>
+<form class="headform" method="post" action="{% url 'idp:add_head' %}" role="form" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 mb-2">
+              <label for="firstName">Full name</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="id_full_name" 
+                name="full_name"
+                placeholder="Please enter first middle and last names" 
+                value="{{ head_form.full_name.value|default:'' }}"
+                required>
+                {% if head_form.full_name.errors %}
+                <div class="invalid-feedback">
+                    {{ head_form.full_name.errors }}
+                </div>
+                {% endif %}
+          </div>
+          <div class="col-md-2 mb-2">
+            <label for="age">Age</label>
+            <input  type="number" 
+            class="form-control" 
+            id="id_age" 
+            name="age"
+            placeholder="" 
+            value="{{ head_form.age.value|default:'' }}"
+            required>
+            {% if head_form.age.errors %}
+            <div class="invalid-feedback">
+                {{ head_form.age.errors }}
+            </div>
+        {% endif %}
+        </div>
+        <div class="col-md-2 mb-2">
+            <label for="sex">Sex</label>
+            <select class="custom-select d-block w-100" id="id_sex" name ="sex" required>
+                <option selected>-------</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <div class="col-md-2 mb-2">
+            <label for="marital_status">Marital Status</label>
+            <select id="id_marital_status" class="custom-select d-block w-100" name="marital_status">
+                <option selected>----------</option>                
+                <option value="Married">Married</option>
+                <option value="Single">Single</option>
+                <option value="Divorced">Divorced</option>
+            </select>
+       </div>
+        </div>
+        <div class="row">
+           <div class="col-md-3 mb-2">
+            <label for="profilepic">Profile Pic.</label>
+            <input 
+                type="file" 
+                class="form-control"
+                id="id_profilepic"
+                name="profilepic"
+                value="{{ head_form.profilepic.value|default:'' }}">
+        
+           </div>
+           <div class="col-md-2 mb-2">
+                <label for="fhhs">Female HH Size</label>
+                <input  type="number" 
+                class="form-control" 
+                id="id_female_hhs" 
+                name="female_hhs"
+                placeholder="" 
+                value="{{ head_form.female_hhs.value|default:'' }}"
+                required>
+                {% if head_form.female_hhs.errors %}
+                <div class="invalid-feedback">
+                    {{ head_form.female_hhs.errors }}
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="mhhs">Male HH Size</label>
+                <input  type="number" 
+                class="form-control" 
+                id="id_male_hhs" 
+                name="male_hhs"
+                placeholder="" 
+                value="{{ head_form.male_hhs.value|default:'' }}"
+                required>
+                {% if head_form.male_hhs.errors %}
+                <div class="invalid-feedback">
+                    {{ head_form.male_hhs.errors }}
+                </div>
+                {% endif %}
+            </div>
+           <div class="col-md-5 mb-2">
+            <label for="phone no">Phone No (+251)</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="id_phone_no" 
+                name="phone_no"
+                placeholder="E.g. 914118079" 
+                value="{{ head_form.phone_no.value|default:'' }}"
+                required>
+                {% if head_form.phone_no.errors %}
+                <div class="invalid-feedback">
+                    {{ head_form.phone_no.errors }}
+                </div>
+                {% endif %}
+           </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="text-center" for="prev_add"><strong style="font-size: 1.3em;">Previous Address</strong></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 mb-2">
+                <label for="dob">Region</label>
+                <select id="id_region" class="custom-select d-block w-100" name="region">
+                    <option selected>-----------</option>
+                     <option value="Tigray">Tigray</option>
+                     <option value="Afar">Afar</option>
+                     <option value="Amhara">Amhara</option>
+                     <option value="Oromiya">Oromiya</option>
+                     <option value="Addis Ababa">Addis Ababa</option>
+                     <option value="SNNP">SNNP</option>
+                     <option value="Gambela">Gambela</option>
+                     <option value="Benshangul">Benshangul</option>
+                     <option value="Diredawa">Diredawa</option>
+                     <option value="Harar">Harar</option>
+                     <option value="Sidama">Sidama</option>
+                </select> 
+           </div>
+            <div class="col-md-3 mb-2">
+                <label for="ozone">Zone</label>
+                <select id="id_ozone" class="custom-select selectpicker d-block w-100" name="ozone">
+                    <option selected>-----------</option>
+                    <optgroup label="Tigray">
+                        <option data-option="Tigray" value="Central">Central</option>
+                        <option data-option="Tigray" value="Eastern">Eastern</option>
+                        <option data-option="Tigray" value="Western">Western</option>
+                        <option data-option="Tigray" value="North Western">North Western</option>
+                        <option data-option="Tigray" value="Southern">Southern</option>
+                        <option data-option="Tigray" value="South Eastern">South Eastern</option>
+                    </optgroup>
+                    <option data-option="Afar" value="Out of Tigray">Out of Tigray</option>
+                </select>
+            </div>
+            <div class="col-md-3 mb-2">
+                <label for="wereda">Wereda</label>
+                <select id="id_owereda" class="custom-select d-block w-100" name="owereda">
+                   <option selected>-----------</option>
+                   <optgroup label="Central">
+                        <option value="Abergele">Abergele</option>    
+                        <option value="Abi Adi">Abi Adi</option>
+                        <option value="Adet">Adet</option>
+                        <option value="Adwa">Adwa</option>
+                        <option value="Ahferom">Ahferom</option>
+                        <option value="Ahsea">Ahsea</option>
+                        <option value="Axum">Axum</option>
+                        <option value="Chila">Chila</option>                   
+                        <option value="Edaga Arbi">Edaga Arbi</option>
+                        <option value="Egela">Egela</option>                   
+                        <option value="Embaseneyti">Embaseneyti</option>
+                        <option value="Endafelasi">Endafelasi</option>                   
+                        <option value="Enticho">Enticho</option>
+                        <option value="Hahayle">Hahayle</option>                   
+                        <option value="Kola Tembien">Kola Tembien</option>                   
+                        <option value="Laelay Maychew">Laelay Maychew</option>                   
+                        <option value="Naeder">Naeder</option>                   
+                        <option value="Qeyih Tekli">Qeyih Tekli</option>
+                        <option value="Rama">Rama</option>
+                        <option value="Rama Adi Arbaete">Rama Adi Arbaete</option>
+                        <option value="Tahtay Maychew">Tahtay Maychew</option>                   
+                        <option value="Tanqua Milash">Tanqua Milash</option>   
+                   </optgroup>
+                   <optgroup label="Eastern">
+                       <option value="Adigrat">Adigrat</option>
+                        <option value="Atsbi">Atsbi</option>
+                        <option value="Atsbi Endaselasie">Atsbi Endaselasie</option>
+                        <option value="Bizet">Bizet</option>
+                        <option value="Edaga Hamus">Edaga Hamus</option>
+                        <option value="Erob">Erob</option>
+                        <option value="Freweyni">Freweyni</option>   
+                        <option value="Ganta Afeshum">Ganta Afeshum</option>
+                        <option value="Gerealta">Gerealta</option>
+                        <option value="Golomekeda">Golomekeda</option>
+                        <option value="Hawzien">Hawzien</option>
+                        <option value="Kilte Awlaelo">Kilte Awlaelo</option>
+                        <option value="Saesie Tsaeda Emba">Saesie Tsaeda Emba</option>
+                        <option value="Tsrae Wemberta">Tsrae Wemberta</option>
+                        <option value="Wukro">Wukro</option>
+                        <option value="Zalambesa">Zalambesa</option>
+                    </optgroup>
+                    <optgroup label="South Eastern">
+                        <option value="Adigudem">Adigudem</option>
+                        <option value="Dogua Tembien">Dogua Tembien</option>
+                        <option value="Enderta">Enderta</option>
+                        <option value="Hagere Selam">Hagere Selam</option>
+                        <option value="Hintalo">Hintalo</option>
+                        <option value="Seharti">Seharti</option>
+                        <option value="Samre">Samre</option>
+                        <option value="Wajerat">Wajerat</option>
+                    </optgroup>
+                    <optgroup label="South">
+                        <option value="Alamata">Alamata</option>
+                        <option value="Bora">Bora</option>
+                        <option value="Chercher">Chercher</option>
+                        <option value="Emba Alaje">Emba Alaje</option>
+                        <option value="Hintalo">Hintalo</option>
+                        <option value="Enda Mokoni">Enda Mokoni</option>
+                        <option value="Korem">Korem</option>
+                        <option value="Maychew">Maychew</option>
+                        <option value="Mokoni">Mokoni</option>
+                        <option value="Ofla">Ofla</option>
+                        <option value="Raya Alamata">Raya Alamata</option>    
+                        <option value="Raya Azebo">Raya Azebo</option>
+                        <option value="Selewa">Selewa</option>
+                    </optgroup>
+                    <optgroup label="North Western">
+                        <option value="Adi Daero">Adi Daero</option>
+                        <option value="Asgede">Asgede</option>
+                        <option value="Endabaguna">Endabaguna</option>
+                        <option value="Laelay Qoraro">Laelay Qoraro</option>
+                        <option value="Laelay Tselemti">Laelay Tselemti</option>
+                        <option value="Maekelay Adyabo">Maekelay Adyabo</option>
+                        <option value="May Tsebri">May Tsebri</option>
+                        <option value="Seyemti Adyabo">Seyemti Adyabo</option>
+                        <option value="Sheraro">Sheraro</option>
+                        <option value="Shire Endaselasie">Shire Endaselasie</option>
+                        <option value="Tahtay Adyabo">Tahtay Adyabo</option>    
+                        <option value="Tahtay Qoraro">Tahtay Qoraro</option>
+                        <option value="Tselemti">Tselemti</option>
+                        <option value="Tsimbla">Tsimbla</option>
+                        <option value="Zana">Zana</option>
+                    </optgroup>
+                    <optgroup label="Western">
+                        <option value="Awra">Awra</option>
+                        <option value="Dansha">Dansha</option>
+                        <option value="Kafta Humera">Kafta Humera</option>
+                        <option value="May Cadra">May Cadra</option>
+                        <option value="May Gaba">May Gaba</option>
+                        <option value="Qorarit">Qorarit</option>
+                        <option value="Setit Humera">Setit Humera</option>
+                        <option value="Tsegede">Tsegede</option>
+                        <option value="Welkayit">Welkayit</option>
+                    </optgroup>
+                    <option data-option="Out of Tigray" value="Out of Tigray">Out of Tigray</option>
+                </select>
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="okebele">Kebel</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id = "id_okebele"
+                    name = "okebele">
+                {% if head_form.okebele.errors %}
+                    <div class="invalid-feedback">
+                        {{ head_form.okebele.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="year_fled">Year Fled</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id = "id_year_fled"
+                    name = "year_fled"
+                    placeholder="E.g. 2013">
+                {% if head_form.year_fled.errors %}
+                    <div class="invalid-feedback">
+                        {{ head_form.year_fled.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><label for="" style="font-size: 1.3em;"><strong>Current Address</strong></label></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 mb-2">
+                <label for="czone">Zone</label>
+                <select id="id_czone" class="custom-select selectpicker d-block w-100" name="czone">
+                    <option selected value="Mekelle">Mekelle</option>
+                </select>
+            </div>
+            <div class="col-md-3 mb-2">
+                <label for="cwereda">Wereda</label>
+                <select id="id_cwereda" class="custom-select selectpicker d-block w-100" name="cwereda">
+                    <option selected value="">----------</option>
+                    <option value="Adi Haqi">Adi Haqi</option>
+                    <option value="Ayder">Ayder</option>
+                    <option value="Hadinet">Hadinet</option>
+                    <option value="Hawelti">Hawelti</option>
+                    <option value="Kedamay Woyane">Kedamay Woyane</option>
+                    <option value="Quiha">Quiha</option>
+                    <option value="Semien">Semien</option>
+                </select>
+            </div>
+           <div class="col-md-3 mb-2">
+                <label for="ckebele">Kebelle</label>
+                <select id="id_ckebele" class="custom-select selectpicker d-block w-100" name="ckebele">
+                    <option selected>-----------</option>
+                    <optgroup label="Adi Haqi">
+                        <option data-option="Adi Haqi" value="Amora">Amora</option>
+                        <option data-option="Adi Haqi" value="Debre Genet">Debre Genet</option>
+                        <option data-option="Adi Haqi" value="Hayelom">Hayelom</option>
+                        <option data-option="Adi Haqi" value="Hidase">Hidase</option>
+                        <option data-option="Adi Haqi" value="Tsinat Woyane">Tsinat Woyane</option>
+                    </optgroup>
+                    <optgroup label="Ayder">
+                        <option data-option="Ayder" value="Adiha">Adiha</option>
+                        <option data-option="Ayder" value="Ginbot 20">Ginbot 20</option>
+                        <option data-option="Ayder" value="Maryam Dihan">Maryam Dihan</option>
+                        <option data-option="Ayder" value="Marta">Marta</option>
+                        <option data-option="Ayder" value="Sertse">Sertse</option>
+                    </optgroup>
+                    <optgroup label="Hadinet">
+                        <option data-option="Hadinet" value="Asmelash">Asmelash</option>
+                        <option data-option="Hadinet" value="Aynalem">Aynalem</option>
+                        <option data-option="Hadinet" value="Debri">Debri</option>
+                        <option data-option="Hadinet" value="Hidase">Hidase</option>
+                        <option data-option="Hadinet" value="Metkel">Metkel</option>
+                        <option data-option="Hadinet" value="Simret">Simret</option>
+                        <option data-option="Hadinet" value="Werie">Werie</option>
+                    </optgroup>
+                    <optgroup label="Hawelti">
+                        <option data-option="Hawelti" value="Adi Shumdhein">Adi Shumdhein</option>
+                        <option data-option="Hawelti" value="Hayelom">Hayelom</option>
+                        <option data-option="Hawelti" value="Hidas">Hidas</option>
+                        <option data-option="Hawelti" value="Mommona">Mommona</option>
+                        <option data-option="Hawelti" value="Selam">Selam</option>
+                    </optgroup>
+                    <optgroup label="Kedamay Woyane">
+                        <option data-option="Kedamay Woyane" value="Harya">Harya</option>
+                        <option data-option="Kedamay Woyane" value="Selam">Selam</option>
+                        <option data-option="Kedamay Woyane" value="Walta">Walta</option>
+                        <option data-option="Kedamay Woyane" value="Zeslasie">Zeslasie</option>
+                    </optgroup>
+                    <optgroup label="Quiha">
+                        <option data-option="Quiha" value="Abreha">Abreha</option>
+                        <option data-option="Quiha" value="Asmelash">Asmelash</option>
+                        <option data-option="Quiha" value="May Tsedo">May Tsedo</option>
+                        <option data-option="Quiha" value="Shibta">Shibta</option>
+                    </optgroup>
+                    <optgroup label="Semien">
+                        <option data-option="Semien" value="Dedebit">Dedebit</option>
+                        <option data-option="Semien" value="Endustry">Endustry</option>
+                        <option data-option="Semien" value="Meles">Meles</option>
+                        <option data-option="Semien" value="Mesfin">Mesfin</option>
+                        <option data-option="Semien" value="Yekatit">Yekatit</option>
+                    </optgroup>
+                </select>
+           </div>
+           <div class="col-md-3 mb-3">
+            <label for="idp">IDP Site</label>
+            <select id="id_idp_site" class="custom-select selectpicker d-block w-100" name="idp_site">
+                <option selected>-----------</option>
+                <option value="In Community">In Community</option>
+                <optgroup label="Adi Haqi">
+                    <option data-option="Adi Haqi" value="70 Kare">70 Kare</option>
+                    <option data-option="Adi Haqi" value="Adi Haqi">Adi Haqi</option>
+                    <option data-option="Adi Haqi" value="Zikre Semaetat">Zikre Semaetat</option>
+                    <option data-option="Adi Haqi" value="Dere Damo">Debre Damo</option>
+                </optgroup>
+                <optgroup label="Ayder">
+                    <option data-option="Ayder" value="Dereq Police">Dereq Police</option>
+                    <option data-option="Ayder" value="Ayder">Ayder</option>
+                    <option data-option="Ayder" value="Yekatit 23">Yekatit 23</option>
+                </optgroup>
+                <optgroup label="Hadinet">
+                    <option data-option="Hadinet" value="Elshaday">Elshaday</option>
+                    <option data-option="Hadinet" value="May Weyni">May Weyni</option>
+                    <option data-option="Hadinet" value="Hope">Hope</option>
+                    <option data-option="Hadinet" value="Kisanet">Kisanet</option>
+                </optgroup>
+                <optgroup label="Hawelti">
+                    <option data-option="Hawelti" value="Adi Shumdhein">Adi Shumdhein</option>
+                    <option data-option="Hawelti" value="Adi Ha">Adi Ha</option>
+                    <option data-option="Hawelti" value="Libanos KG">Libanos KG</option>
+                    <option data-option="Hawelti" value="Mommona">Mommona</option>
+                    <option data-option="Hawelti" value="Adi Ha">Adi Ha</option>
+                    <option data-option="Hawelti" value="Hawelti">Hawelti</option>
+                    <option data-option="Hawelti" value="Ethio-China">Ethio-China</option>
+                </optgroup>
+                <optgroup label="Kedamay Woyane">
+                    <option data-option="Kedamay Woyane" value="Enda Etan">Enda Etan</option>
+                    <option data-option="Kedamay Woyane" value="Mekell Tina Tabya">Mekelle Tina Tabya</option>
+                    <option data-option="Kedamay Woyane" value="Gereb Tsedo">Gereb Tsedo</option>
+                    <option data-option="Kedamay Woyane" value="Kassate Birhan">Kassate Birhan</option>
+                    <option data-option="Kedamay Woyane" value="Midre Genet">Midre Genet</option>
+                </optgroup>
+                <optgroup label="Quiha">
+                    <option data-option="Quiha" value="Quiha">Quiha</option>
+                    <option data-option="Quiha" value="Blocket Fabrica">Blocket Fabrica</option>
+                </optgroup>
+                <optgroup label="Semien">
+                    <option data-option="Semien" value="Alene">Alene</option>
+                    <option data-option="Semien" value="Lachi Mesebo">Lachi Mesebo</option>
+                    <option data-option="Semien" value="Mesfin">Mesfin</option>
+                    <option data-option="Semien" value="Midrok">Midrok</option>
+                    <option data-option="Semien" value="Elala">Elala</option>
+                    <option data-option="Semien" value="Lekatit 11">Lekatit 11</option>
+                    <option data-option="Semien" value="Meseret">Meseret</option>
+                </optgroup>
+            </select>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 mb-3 form-inline">
+                <label for="disabled">Is Disabiled?</label>
+                <input
+                    type="checkbox"
+                    class="form-control"
+                    id="id_is_disabled"
+                    name="is_disabled">
+            </div>
+            <div class="col-md-3 mb-3 form-inline">
+                <label for="pregnant">Pregnant or Lactating?</label>
+                <input
+                    type="checkbox"
+                    class="form-control"
+                    id="id_plw"
+                    name="plw">
+            </div>
+            <div class="col-md-3 mb-3 form-inline">
+                <label for="psnp_beneficiary">PSNP Beneficiary?</label>
+                <input
+                    type="checkbox"
+                    class="form-control"
+                    id="id_psnp_beneficiary"
+                    name="psnp_beneficiary">
+            </div>
+            <div class="col-md-3 mb-3 form-inline">
+                <label for="pregnant">Emergency Relief Host</label>
+                <input
+                    type="checkbox"
+                    class="form-control"
+                    id="id_emergency_relief_host"
+                    name="emergency_relief_host">
+            </div>
+        </div>
+        {% include 'idp/partials/_lact_and_preg_modal.html' %}
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Add Head of House Hold</button>
+        </div>
+</form>
+

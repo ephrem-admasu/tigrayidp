@@ -1,0 +1,68 @@
+<div class="modal fade" id="lactandpregModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Lactation and Pregnancy Form</h4>
+      </div>
+      <div class="modal-body">
+          <h5 class="modal-title" id="myModalLabel">Lactation Data</h5>
+         <div class="row">
+          <div class="col-md-4 mb-3">
+              <label for="lactating">Subject Lactating?</label>
+              <input 
+                  type="checkbox" 
+                  class="form-control"
+                  name="lactating" 
+                  id="id_lactating">
+              <!-- <input
+                  type="checkbox"
+                  class="form-control"
+                  id="id_lactating"
+                  name="lactating"
+                  value="{{ head_form.lactating.value|default:'' }}" > -->
+         </div>
+         <div class="col-md-4 mb-3">
+              <label for="lactonset">Lactation Onset</label>
+              <input 
+                  type="date" 
+                  class="form-control" 
+                  id="id_lactation_onset" 
+                  name="lactation_onset"
+                  value="{{ head_form.lactation_onset.value|default:'' }}"
+                  placeholder="Date of first lactation">
+         </div>
+         </div>
+    </div>
+    <div class="modal-body">
+      <h5 class="modal-title" id="myModalLabel">Pregnancy Data</h5>
+         <div class="row">
+          <div class="col-md-4 mb-3">
+              <label for="pregnant">Subject Pregnant?</label>
+              <input
+                  type="checkbox"
+                  class="form-control"
+                  id="id_pregnant"
+                  name="pregnant">
+         </div>
+         <div class="col-md-4 mb-3">
+              <label for="dob">Lactation Onset</label>
+              <input 
+                  type="date" 
+                  class="form-control"
+                  id="id_pregnancy_onset" 
+                  name="pregnancy_onset"
+                  value="{{ head_form.pregnancy_onset.value|default:'' }}"
+                  placeholder="Date of pregnancy onset">
+         </div>
+         </div>
+  
+     <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+    </div>
+</div>
+  </div>
+</div>
+</div>

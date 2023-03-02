@@ -1,0 +1,125 @@
+
+
+<h3 class="text-center">Add New Family Member</h3>
+<form class="headform" method="post" action="{% url 'idp:add_member' idp.id %}" role="form" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="row">
+            <div class="col-md-10 mb-2">
+                <label for="firstName">Full name</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="id_full_name" 
+                  name="full_name"
+                  placeholder="Please enter first middle and last names" 
+                  value="{{ member_form.name.value|default:'' }}"
+                  required>
+                  {% if member_form.full_name.errors %}
+                  <div class="invalid-feedback">
+                      {{ member_form.full_name.errors }}
+                  </div>
+                  {% endif %}
+            </div>
+            <div class="col-md-2 mb-2">
+              <label for="age">Age</label>
+              <input  type="number" 
+              class="form-control" 
+              id="id_age" 
+              name="age"
+              placeholder="" 
+              value="{{ head_form.age.value|default:'' }}"
+              required>
+              {% if head_form.age.errors %}
+              <div class="invalid-feedback">
+                  {{ head_form.age.errors }}
+              </div>
+          {% endif %}
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="sex">Sex</label>
+                <select class="custom-select d-block w-100" id="id_sex" name ="sex" required>
+                    <option value="" selected>-------</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="profilepic">Profile Pic.</label>
+                <input 
+                    type="file" 
+                    class="form-control"
+                    id="id_profilepic"
+                    name="profilepic"
+                    accept="img/*" 
+                    value="{{ member_form.profilepic.value|default:'' }}">
+            
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="marital_status">Marital Status</label>
+                <select id="id_marital_status" class="custom-select d-block w-100" name="marital_status">
+                    <option selected>----------</option>                
+                    <option value="Married">Married</option>
+                    <option value="Single">Single</option>
+                    <option value="Divorced">Divorced</option>
+                </select>
+           </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="relation">Relation</label>
+                <select id="id_relation" class="custom-select d-block w-100" name="relation">
+                    <option selected>---------</option>                
+                    <option value="Spouse">Spouse</option>
+                    <option value="Child">Child</option>
+                    <option value="Relative">Relative</option>
+                    <option value="Friend">Friend</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="credence">Certificate Type</label>
+                <select id="id_credence" class="custom-select d-block w-100" name="credence">
+                    <option selected>---------</option>                
+                    <option value="Birth Certificate">Birth Certificate</option>
+                    <option value="Marriage Certificate">Marriage Certificate</option>
+                    <option value="Vaccine Certificate">Vaccine Certificate</option>
+                    <option value="Social Justice Certificate">Social Justice Certificate</option>
+                    <option value="Medical Certificate">Medical Certificate</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="credencepic">Upload Certificate</label>
+                <input 
+                    type="file" 
+                    class="form-control"
+                    id="id_credence_pic"
+                    name="credence_pic" 
+                    accept="img/*" 
+                    value="{{ member_form.credence_pic.value|default:'' }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 mb-3 form-inline">
+                <label for="pregnant">Is Disabled?</label>
+                <input
+                    type="checkbox"
+                    class="form-control"
+                    id="id_is_disabled"
+                    name="is_disabled">
+                </div>
+                <div class="col-md-3 mb-3 form-inline">
+                    <label for="plw">Is Pregnant or Lactating?</label>
+                    <input
+                        type="checkbox"
+                        class="form-control"
+                        id="id_plw"
+                        name="plw">
+                    </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Add Member</button>
+        </div>
+</form>
